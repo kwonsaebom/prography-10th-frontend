@@ -1,7 +1,11 @@
+import { RouterProvider } from "react-router-dom";
+// import { Suspense } from "react";
+import router from "@/routes";
+
 function App() {
   return (
     <>
-      <h1 className="text-primary">테일윈드 적용</h1>
+      <RouterProvider router={router} />
     </>
   );
 }
