@@ -14,7 +14,7 @@ export default function Header() {
           to="apply"
           className="bg-primary px-6 py-3 rounded-full text-white font-bold"
         >
-          11기 지원하기
+          10기 지원하기
         </Link>
       </nav>
     </header>

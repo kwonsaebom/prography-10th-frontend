@@ -7,7 +7,10 @@ const MainPage = lazy(() => import("@pages/MainPage"));
 const AboutPage = lazy(() => import("@pages/AboutPage"));
 const ProjectPage = lazy(() => import("@pages/ProjectPage"));
 const ContactPage = lazy(() => import("@pages/ContactPage"));
-const ApplyPage = lazy(() => import("@pages/ApplyPage"));
+const ApplyFirstPage = lazy(() => import("@pages/ApplyFirstPage"));
+const ApplySecondPage = lazy(() => import("@pages/ApplySecondPage"));
+const ApplyThirdPage = lazy(() => import("@pages/ApplyThirdPage"));
+const ApplyResultPage = lazy(() => import("@pages/ApplyResultPage"));
 
 const router = createBrowserRouter([
   {
@@ -18,7 +21,15 @@ const router = createBrowserRouter([
       { path: "/about", element: <AboutPage /> },
       { path: "/project", element: <ProjectPage /> },
       { path: "/contact", element: <ContactPage /> },
-      { path: "/apply", element: <ApplyPage /> },
+      {
+        path: "/apply",
+        element: <ApplyFirstPage />,
+        children: [
+          { path: "/apply/second", element: <ApplySecondPage /> },
+          { path: "/apply/third", element: <ApplyThirdPage /> },
+          { path: "/apply/result", element: <ApplyResultPage /> },
+        ],
+      },
     ],
   },
 ]);

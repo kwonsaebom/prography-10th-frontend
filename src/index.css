@@ -4,5 +4,10 @@
 
 @theme {
   --font-display: "SF Pro Display", sans-serif;
-  --color-primary: #fa2655;
+  --color-primary: #fa2454;
+  --color-gray-1: #f5f5f5;
+  --color-gray-2: #d9d9d9;
+  --color-gray-3: #c4c4c4;
+  --color-gray-4: #bebebe;
+  --color-gray-5: #5f5f5f;
 }
