@@ -18,7 +18,7 @@ export default function ApplyFirstPage() {
           프로그라피 10기 지원을 위한 개인정보 수집에 대한 동의가 필요합니다
         </p>
 
-        <form className="border border-gray-3 rounded-2xl py-10 px-5 font-bold">
+        <form className="border border-gray-3 rounded-2xl py-10 px-5 font-semibold">
           <ol>
             <li>수집 목적: Prography 10기 리쿠르팅 과정 및 결과 안내</li>
             <li>수집 항목: 이름, 이메일, 핸드폰번호, 학교 정보 및 직장 정보</li>
@@ -27,7 +27,7 @@ export default function ApplyFirstPage() {
 
           <p className="py-4">
             개인정보 수집여부 동의 여부를 체크해주세요.
-            <span className="text-red-600 text-xl font-medium"> *</span>
+            <span className="text-red text-xl font-medium"> *</span>
           </p>
 
           <div className="flex flex-col gap-4">
@@ -41,7 +41,7 @@ export default function ApplyFirstPage() {
         </form>
       </section>
 
-      <ApplyFooter />
+      <ApplyFooter next="/apply/second" />
     </>
   );
 }
