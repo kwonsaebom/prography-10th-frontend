@@ -1,4 +1,4 @@
-import ApplyHeader from "../components/ApplyHeader";
+import ApplyHeader from "@components/ApplyHeader";
 
 export default function ApplyFirstPage() {
   return (

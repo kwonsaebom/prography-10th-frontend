@@ -4,7 +4,7 @@ import github from "/images/logo_github.svg";
 
 export default function Footer() {
   return (
-    <div className="absolute bottom-40 left-1/2 -translate-x-1/2 flex flex-col gap-6 items-center">
+    <footer className="mb-20 flex flex-col gap-6 items-center">
       <div className="flex justify-center gap-5">
         <Link to="https://www.instagram.com/prography_official/">
           <img src={instagram} />
@@ -13,7 +13,6 @@ export default function Footer() {
           <img src={github} />
         </Link>
       </div>
-
       <p className="text-gray-3 relative abolute">
         <strong>Contact</strong> contact.prography@gmail.com
       </p>
@@ -21,6 +20,6 @@ export default function Footer() {
       <span className="text-gray-3 mb-2">______</span>
 
       <p className="text-gray-5">© 2024 Prography.ALL RIGHTS RESERVED.</p>
-    </div>
+    </footer>
   );
 }

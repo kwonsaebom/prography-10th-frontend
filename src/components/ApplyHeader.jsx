@@ -7,10 +7,10 @@ export default function ApplyHeader({ step }) {
 
   return (
     <>
-      <h1 className="text-white font-bold text-5xl text-center py-7">
+      <h1 className="font-bold text-5xl text-center py-7">
         Prography 10기 지원서
       </h1>
-      <ol className="text-white flex items-center justify-around px-40">
+      <ol className="flex items-center justify-around px-40">
         <li className={`${progress} ${progressBar}`}>1</li>
         <li className={`${progress} ${progressBar}`}>2</li>
         <li className={progress}>3</li>
