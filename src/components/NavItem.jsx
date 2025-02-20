@@ -9,7 +9,9 @@ export default function NavItem({ to, children }) {
   return (
     <NavLink
       to={to}
-      className={({ isActive }) => (isActive ? "text-primary" : undefined)}
+      className={({ isActive }) =>
+        isActive ? "text-primary" : "hover:text-primary"
+      }
     >
       {children}
     </NavLink>
