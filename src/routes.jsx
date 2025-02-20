@@ -23,8 +23,8 @@ const router = createBrowserRouter([
       { path: "/contact", element: <ContactPage /> },
       {
         path: "/apply",
-        element: <ApplyFirstPage />,
         children: [
+          { index: true, element: <ApplyFirstPage /> },
           { path: "/apply/second", element: <ApplySecondPage /> },
           { path: "/apply/third", element: <ApplyThirdPage /> },
           { path: "/apply/result", element: <ApplyResultPage /> },
