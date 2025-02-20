@@ -5,7 +5,7 @@ import ApplyFooter from "@components/ApplyFooter";
 export default function ApplyProfilePage() {
   return (
     <>
-      <ApplyHeader progress="2" />
+      <ApplyHeader step="2" />
 
       <section className="my-10 py-15 px-10 bg-white rounded-xl text-black">
         <h2 className="text-2xl font-bold pb-4 border-b-3 border-b-primary ">

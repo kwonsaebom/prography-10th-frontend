@@ -8,7 +8,7 @@ export default function ApplyAgreePage() {
 
   return (
     <>
-      <ApplyHeader progress="1" />
+      <ApplyHeader step="1" />
 
       <section className="my-10 py-15 px-10 bg-white rounded-xl text-black">
         <h2 className="text-2xl font-bold pb-4 border-b-3 border-b-primary ">

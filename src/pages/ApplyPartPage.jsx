@@ -5,7 +5,7 @@ import CheckBox from "@components/CheckBox";
 export default function ApplyPartPage() {
   return (
     <>
-      <ApplyHeader progress="3" />
+      <ApplyHeader step="3" />
 
       <section className="my-10 py-15 px-10 bg-white rounded-xl text-black">
         <h2 className="text-2xl font-bold pb-4 border-b-3 border-b-primary ">

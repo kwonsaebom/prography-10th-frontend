@@ -1,3 +1,9 @@
+import PropTypes from "prop-types";
+
+ApplyHeader.propTypes = {
+  step: PropTypes.string.isRequired,
+};
+
 export default function ApplyHeader({ step }) {
   const progress =
     "bg-white text-primary text-lg font-bold w-10 h-10 flex justify-center items-center rounded-full z-0";
