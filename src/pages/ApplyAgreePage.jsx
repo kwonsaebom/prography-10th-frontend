@@ -1,10 +1,23 @@
 import ApplyHeader from "@components/ApplyHeader";
 import CheckBox from "@components/CheckBox";
-import { useState } from "react";
 import ApplyFooter from "@components/ApplyFooter";
+import { useForm } from "react-hook-form";
+import useApplyStore from "@zustand/useApplyStore";
 
 export default function ApplyAgreePage() {
-  const [isChecked, setIsChecked] = useState(false);
+  const { agree, setAgree } = useApplyStore();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid },
+  } = useForm({
+    mode: "onChange",
+    defaultValues: { agree },
+  });
+
+  const onSubmit = (data) => {
+    setAgree(data.agree);
+  };
 
   return (
     <>
@@ -18,7 +31,10 @@ export default function ApplyAgreePage() {
           프로그라피 10기 지원을 위한 개인정보 수집에 대한 동의가 필요합니다
         </p>
 
-        <form className="border border-gray-3 rounded-2xl py-10 px-5 font-semibold">
+        <form
+          className="border border-gray-3 rounded-2xl py-10 px-5 font-semibold"
+          onSubmit={handleSubmit(onSubmit)}
+        >
           <ol>
             <li>수집 목적: Prography 10기 리쿠르팅 과정 및 결과 안내</li>
             <li>수집 항목: 이름, 이메일, 핸드폰번호, 학교 정보 및 직장 정보</li>
@@ -31,17 +47,32 @@ export default function ApplyAgreePage() {
           </p>
 
           <div className="flex flex-col gap-4">
-            <CheckBox checked={isChecked} onChange={setIsChecked}>
+            <CheckBox
+              {...register("agree", {
+                required: "개인정보 수집 동의가 필요합니다.",
+              })}
+              value="yes"
+            >
               개인정보 수집 여부에 동의합니다
             </CheckBox>
-            <CheckBox checked={!isChecked}>
+            <CheckBox
+              {...register("agree", {
+                required: "개인정보 수집 동의가 필요합니다.",
+              })}
+              value="no"
+            >
               개인정보 수집 여부에 동의하지 않습니다
             </CheckBox>
+            {errors.agree && (
+              <span className="text-red-500 text-sm">
+                {errors.agree.message}
+              </span>
+            )}
           </div>
         </form>
       </section>
 
-      <ApplyFooter next="/apply/profile" />
+      <ApplyFooter next="/apply/profile" disabled={!isValid} />
     </>
   );
 }

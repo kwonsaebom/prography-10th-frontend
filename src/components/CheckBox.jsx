@@ -1,12 +1,7 @@
-export default function CheckBox({ children, checked }) {
+export default function CheckBox({ children, value, ...rest }) {
   return (
-    <label className="border border-gray-3 rounded-lg p-4">
-      <input
-        type="checkbox"
-        checked={checked}
-        onChange={(e) => onChange(e.target.checked)}
-        className="mr-3"
-      />
+    <label className="border border-gray-3 rounded-lg p-4 flex items-center">
+      <input type="radio" className="mr-3" value={value} {...rest} />
       {children}
     </label>
   );
