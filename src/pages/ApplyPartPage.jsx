@@ -2,7 +2,7 @@ import ApplyHeader from "@components/ApplyHeader";
 import ApplyFooter from "@components/ApplyFooter";
 import CheckBox from "@components/CheckBox";
 
-export default function ApplyThirdPage() {
+export default function ApplyPartPage() {
   return (
     <>
       <ApplyHeader progress="3" />

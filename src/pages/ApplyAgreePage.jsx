@@ -3,7 +3,7 @@ import CheckBox from "@components/CheckBox";
 import { useState } from "react";
 import ApplyFooter from "@components/ApplyFooter";
 
-export default function ApplyFirstPage() {
+export default function ApplyAgreePage() {
   const [isChecked, setIsChecked] = useState(false);
 
   return (
@@ -41,7 +41,7 @@ export default function ApplyFirstPage() {
         </form>
       </section>
 
-      <ApplyFooter next="/apply/second" />
+      <ApplyFooter next="/apply/profile" />
     </>
   );
 }

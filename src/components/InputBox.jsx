@@ -4,6 +4,7 @@ InputBox.propTypes = {
   children: PropTypes.string.isRequired,
   example: PropTypes.string.isRequired,
 };
+
 export default function InputBox({ children, example }) {
   return (
     <label className="border border-gray-3 rounded-lg p-4 flex flex-col gap-2">

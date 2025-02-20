@@ -2,7 +2,7 @@ import ApplyHeader from "@components/ApplyHeader";
 import InputBox from "@components/InputBox";
 import ApplyFooter from "@components/ApplyFooter";
 
-export default function ApplySecondPage() {
+export default function ApplyProfilePage() {
   return (
     <>
       <ApplyHeader progress="2" />
@@ -29,7 +29,7 @@ export default function ApplySecondPage() {
         </form>
       </section>
 
-      <ApplyFooter pre="-1" next="/apply/third" />
+      <ApplyFooter pre="-1" next="/apply/part" />
     </>
   );
 }
