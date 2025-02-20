@@ -5,8 +5,9 @@ export default function ApplyHeader({ step }) {
   const progressBar =
     "relative after:content-[''] after:absolute after:w-85 after:h-1 after:bg-white after:left-10";
 
+  const check = "bg-primary text-white";
   return (
-    <>
+    <section>
       <h1 className="font-bold text-5xl text-center py-7">
         Prography 10기 지원서
       </h1>
@@ -15,6 +16,6 @@ export default function ApplyHeader({ step }) {
         <li className={`${progress} ${progressBar}`}>2</li>
         <li className={progress}>3</li>
       </ol>
-    </>
+    </section>
   );
 }
