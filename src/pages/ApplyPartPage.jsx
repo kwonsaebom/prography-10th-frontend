@@ -5,9 +5,11 @@ import useApplyStore from "@zustand/useApplyStore";
 import ApplyHeader from "@components/ApplyHeader";
 import ApplyFooter from "@components/ApplyFooter";
 import CheckBox from "@components/CheckBox";
+import { useNavigate } from "react-router-dom";
 
 export default function ApplyPartPage() {
-  const { part, setPart } = useApplyStore();
+  const { part, setPart, resetForm } = useApplyStore();
+  const navigate = useNavigate();
 
   const {
     control,
@@ -27,6 +29,30 @@ export default function ApplyPartPage() {
 
   const saveData = (data) => {
     setPart(data.part);
+  };
+
+  const submitData = async () => {
+    const formData = JSON.parse(localStorage.getItem("apply-storage"));
+
+    if (!formData) {
+      alert("제출할 데이터가 없습니다.");
+      return;
+    }
+
+    try {
+      console.log("📩 제출 데이터:", formData);
+
+      alert("📩 지원서 제출이 완료되었습니다!");
+
+      localStorage.removeItem("apply-storage");
+      resetForm();
+      reset({ part: "" });
+
+      navigate("/apply/result");
+    } catch (error) {
+      alert("🚨 지원서 제출 중 오류가 발생했습니다. 다시 시도해주세요.");
+      console.error("🚨 제출 오류:", error);
+    }
   };
 
   return (
@@ -126,7 +152,7 @@ export default function ApplyPartPage() {
         pre="-1"
         next="/apply/result"
         done={true}
-        onNext={handleSubmit(saveData)}
+        onNext={handleSubmit(submitData)}
         disabled={!isValid}
       />
     </>

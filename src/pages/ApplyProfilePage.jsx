@@ -31,10 +31,6 @@ export default function ApplyProfilePage() {
       email: data.email,
       phone: data.phone,
     });
-
-    setTimeout(() => {
-      console.log("🔄 Zustand 저장 후 상태:", useApplyStore.getState());
-    }, 100);
   };
 
   return (
