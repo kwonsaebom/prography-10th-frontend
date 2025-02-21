@@ -5,9 +5,10 @@ Button.propTypes = {
   children: PropTypes.string.isRequired,
   to: PropTypes.string,
   done: PropTypes.bool,
+  onClick: PropTypes.func,
 };
 
-export function Button({ children, to, done = false }) {
+export function Button({ children, to, done = false, onClick }) {
   const disableClass =
     "py-2 px-6 rounded-md text-gray-5 bg-gray-2 cursor-not-allowed";
   const activeClass =
@@ -19,8 +20,17 @@ export function Button({ children, to, done = false }) {
     <button
       className={to ? activeClass : disableClass}
       disabled={!to}
-      onClick={() => {
-        to === "-1" ? navigate(-1) : navigate(to);
+      onClick={(e) => {
+        if (onClick) {
+          onClick(e);
+        }
+
+        if (to === "-1") {
+          e.preventDefault();
+          navigate(-1);
+        } else if (to) {
+          navigate(to);
+        }
       }}
     >
       {done ? "제출하기" : children}

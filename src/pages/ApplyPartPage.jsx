@@ -7,7 +7,7 @@ import ApplyFooter from "@components/ApplyFooter";
 import CheckBox from "@components/CheckBox";
 
 export default function ApplyPartPage() {
-  const { part, setPart } = useApplyStore(); // ✅ Zustand에서 값 불러오기
+  const { part, setPart } = useApplyStore();
 
   const {
     control,
@@ -16,21 +16,17 @@ export default function ApplyPartPage() {
     handleSubmit,
   } = useForm({
     mode: "onChange",
-    defaultValues: { part }, // ✅ Zustand 값으로 초기화
+    defaultValues: { part },
   });
 
-  // ✅ Zustand 값이 변경될 때 useForm과 동기화
   useEffect(() => {
     if (part) {
       reset({ part });
-      console.log("🟠 useEffect 실행됨, 현재 Zustand 값:", { part });
     }
   }, [part, reset]);
 
-  // ✅ 현재 선택한 값을 Zustand에 저장
   const saveData = (data) => {
-    console.log("🟢 저장할 값:", data.part);
-    setPart(data.part); // ✅ Zustand 상태 업데이트
+    setPart(data.part);
   };
 
   return (
@@ -126,13 +122,12 @@ export default function ApplyPartPage() {
         </form>
       </section>
 
-      {/* ✅ "다음" 버튼 클릭 시 Zustand에 데이터 저장 */}
       <ApplyFooter
         pre="-1"
         next="/apply/result"
         done={true}
-        onNext={handleSubmit(saveData)} // ✅ 데이터 저장 후 이동
-        disabled={!isValid} // ✅ 유효성 검사 통과하지 않으면 버튼 비활성화
+        onNext={handleSubmit(saveData)}
+        disabled={!isValid}
       />
     </>
   );

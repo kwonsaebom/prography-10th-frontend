@@ -3,21 +3,38 @@ import InputBox from "@components/InputBox";
 import ApplyFooter from "@components/ApplyFooter";
 import { useForm } from "react-hook-form";
 import useApplyStore from "@zustand/useApplyStore";
+import { useEffect } from "react";
 
 export default function ApplyProfilePage() {
+  const { name, email, phone, setProfile } = useApplyStore();
+
   const {
     register,
     handleSubmit,
     formState: { errors, isValid },
+    reset,
+    getValues,
   } = useForm({
     mode: "onChange",
+    defaultValues: { name, email, phone },
   });
-  const setProfile = useApplyStore((state) => state.setProfile);
 
-  const onSubmit = (data) => {
-    setProfile("name", data.name);
-    setProfile("email", data.email);
-    setProfile("phone", data.phone);
+  useEffect(() => {
+    reset({ name, email, phone });
+  }, [name, email, phone, reset]);
+
+  const saveData = () => {
+    const data = getValues();
+
+    setProfile({
+      name: data.name,
+      email: data.email,
+      phone: data.phone,
+    });
+
+    setTimeout(() => {
+      console.log("🔄 Zustand 저장 후 상태:", useApplyStore.getState());
+    }, 100);
   };
 
   return (
@@ -25,12 +42,12 @@ export default function ApplyProfilePage() {
       <ApplyHeader step="2" />
 
       <section className="max-w-[40vw] mx-auto my-10 py-15 px-10 bg-white rounded-xl text-black">
-        <h2 className="text-2xl font-bold pb-4 border-b-3 border-b-primary ">
+        <h2 className="text-2xl font-bold pb-4 border-b-3 border-b-primary">
           기본 정보
         </h2>
         <p className="my-5 text-gray-5">연락 가능한 정보를 입력해주세요</p>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
+        <form className="flex flex-col gap-6">
           <InputBox
             label="성함을 입력해주세요"
             example="홍길동"
@@ -63,11 +80,14 @@ export default function ApplyProfilePage() {
           />
         </form>
       </section>
+
       <ApplyFooter
         pre="-1"
         next="/apply/part"
-        onNext={handleSubmit(onSubmit)} // 버튼 클릭 시 실행
-        disabled={!isValid} // 입력값이 올바르지 않으면 비활성화
+        onNext={() => {
+          saveData();
+        }}
+        disabled={!isValid}
       />
     </>
   );
