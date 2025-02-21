@@ -1,22 +1,28 @@
 import ApplyHeader from "@components/ApplyHeader";
 import CheckBox from "@components/CheckBox";
 import ApplyFooter from "@components/ApplyFooter";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
+import { useEffect } from "react";
 import useApplyStore from "@zustand/useApplyStore";
 
 export default function ApplyAgreePage() {
   const { agree, setAgree } = useApplyStore();
+
   const {
-    register,
-    handleSubmit,
+    control,
     formState: { errors, isValid },
+    reset,
   } = useForm({
     mode: "onChange",
     defaultValues: { agree },
   });
 
-  const onSubmit = (data) => {
-    setAgree(data.agree);
+  useEffect(() => {
+    reset({ agree });
+  }, [agree, reset]);
+
+  const saveData = (selectedAgree) => {
+    setAgree(selectedAgree);
   };
 
   return (
@@ -31,10 +37,7 @@ export default function ApplyAgreePage() {
           프로그라피 10기 지원을 위한 개인정보 수집에 대한 동의가 필요합니다
         </p>
 
-        <form
-          className="border border-gray-3 rounded-2xl py-10 px-5 font-semibold"
-          onSubmit={handleSubmit(onSubmit)}
-        >
+        <form className="border border-gray-3 rounded-2xl py-10 px-5 font-semibold">
           <ol>
             <li>수집 목적: Prography 10기 리쿠르팅 과정 및 결과 안내</li>
             <li>수집 항목: 이름, 이메일, 핸드폰번호, 학교 정보 및 직장 정보</li>
@@ -47,22 +50,37 @@ export default function ApplyAgreePage() {
           </p>
 
           <div className="flex flex-col gap-4">
-            <CheckBox
-              {...register("agree", {
-                required: "개인정보 수집 동의가 필요합니다.",
-              })}
-              value="yes"
-            >
-              개인정보 수집 여부에 동의합니다
-            </CheckBox>
-            <CheckBox
-              {...register("agree", {
-                required: "개인정보 수집 동의가 필요합니다.",
-              })}
-              value="no"
-            >
-              개인정보 수집 여부에 동의하지 않습니다
-            </CheckBox>
+            <Controller
+              name="agree"
+              control={control}
+              rules={{ required: "개인정보 수집 동의가 필요합니다." }}
+              render={({ field }) => (
+                <>
+                  <CheckBox
+                    {...field}
+                    value="yes"
+                    checked={field.value === "yes"}
+                    onChange={() => {
+                      field.onChange("yes");
+                      saveData("yes");
+                    }}
+                  >
+                    개인정보 수집 여부에 동의합니다
+                  </CheckBox>
+                  <CheckBox
+                    {...field}
+                    value="no"
+                    checked={field.value === "no"}
+                    onChange={() => {
+                      field.onChange("no");
+                      saveData("no");
+                    }}
+                  >
+                    개인정보 수집 여부에 동의하지 않습니다
+                  </CheckBox>
+                </>
+              )}
+            />
             {errors.agree && (
               <span className="text-red-500 text-sm">
                 {errors.agree.message}
