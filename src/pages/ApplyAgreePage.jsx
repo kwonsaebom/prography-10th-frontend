@@ -23,7 +23,7 @@ export default function ApplyAgreePage() {
     <>
       <ApplyHeader step="1" />
 
-      <section className="my-10 py-15 px-10 bg-white rounded-xl text-black">
+      <section className="max-w-[40vw] mx-auto my-10 py-15 px-10 bg-white rounded-xl text-black">
         <h2 className="text-2xl font-bold pb-4 border-b-3 border-b-primary ">
           개인정보 수집 동의
         </h2>

@@ -24,7 +24,7 @@ export default function ApplyPartPage() {
     <>
       <ApplyHeader step="3" />
 
-      <section className="my-10 py-15 px-10 bg-white rounded-xl text-black">
+      <section className="max-w-[40vw] mx-auto my-10 py-15 px-10 bg-white rounded-xl text-black">
         <h2 className="text-2xl font-bold pb-4 border-b-3 border-b-primary ">
           지원 정보
         </h2>
